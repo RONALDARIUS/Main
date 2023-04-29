@@ -242,6 +242,7 @@ n:addToggle("Esp Security Location", nil, function(value)
     end
 end)
 --dropdowm
+local plr = game:GetService("Players").LocalPlayer.Character
 local tablen = {}
 getgenv().thnp = nil
 
@@ -292,13 +293,13 @@ dd:addToggle("Esp Npc", nil, function(value)
                     wait()
                 else
                     if v.Interact.ObjectName.Value == getgenv().thnp then
-                        if v.HumanoidRootPart:FindFirstChild("ESP") then
+                        if v.HumanoidRootPart:FindFirstChild("ESPD") then
                             wait()
                         else
                             local b = Instance.new("BillboardGui")
                             local t = Instance.new("TextLabel")
                             b.Parent = v.HumanoidRootPart
-                            b.Name = "ESP"
+                            b.Name = "ESPD"
                             b.AlwaysOnTop = true
                             b.Size = UDim2.new(0, 50, 0, 50)
                             b.StudsOffset = Vector3.new(0, 2, 0)
@@ -321,10 +322,19 @@ dd:addToggle("Esp Npc", nil, function(value)
                 else
                     if v.Interact.ObjectName.Value == getgenv().thnp then
                         if v:FindFirstChild("HumanoidRootPart") then
-                            v.HumanoidRootPart.ESP:Destroy()
+                            v.HumanoidRootPart.ESPD:Destroy()
                         end
                     end
                 end
+            end
+        end
+    end
+end)
+dd:addButton("Clear Esp",function()
+    for _,v in pairs(game:GetService("Workspace").Level.Actors:GetDescendants()) do
+        if v.Name == "Character" then
+            if v.HumanoidRootPart:FindFirstChild("ESPD") then
+                v.HumanoidRootPart.ESPD:Destroy()
             end
         end
     end
@@ -337,12 +347,12 @@ dd:addToggle("Highlight Npc", nil, function(value)
                     wait()
                 else
                     if v.Interact.ObjectName.Value == getgenv().thnp then
-                        if v:FindFirstChild("HL") then
+                        if v:FindFirstChild("HLD") then
                             wait()
                         else
                             local hg = Instance.new("Highlight")
                             hg.Parent = v
-                            hg.Name = "HL"
+                            hg.Name = "HLD"
                             hg.OutlineTransparency = 0.3
                             hg.FillTransparency = 0.3
                             hg.FillColor = Color3.new(1, 0, 0)
@@ -358,8 +368,8 @@ dd:addToggle("Highlight Npc", nil, function(value)
                     wait()
                 else
                     if v.Interact.ObjectName.Value == getgenv().thnp then
-                        if v:FindFirstChild("HL") then
-                            v.HL:Destroy()
+                        if v:FindFirstChild("HLD") then
+                            v.HLD:Destroy()
                         end
                     end
                 end
@@ -367,8 +377,26 @@ dd:addToggle("Highlight Npc", nil, function(value)
         end
     end
 end)
+dd:addButton("Clear Highlight",function()
+    for _,v in pairs(game:GetService("Workspace").Level.Actors:GetDescendants()) do
+        if v.Name == "Character" then
+            if v.HumanoidRootPart:FindFirstChild("HLD") then
+                v.HumanoidRootPart.HLD:Destroy()
+            end
+        end
+    end
+end)
+dd:addButton("Bring A Selected Npc",function()
+    local ncc = game:GetService("Workspace").Level.Actors
+    if ncc:FindFirstChild("Character") then
+        if ncc.Character.Interact.ObjectName.Value == getgenv().thnp then
+            ncc.Character.HumanoidRootPart.Investigate.Radio.Value = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+            wait(0.15)
+            ncc.Character.HumanoidRootPart.CFrame = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+        end
+    end
+end)
 --radio
-local plr = game:GetService("Players").LocalPlayer.Character
 r:addButton("Radio For Keycard",function()
     for _,v in pairs(game:GetService("Workspace").Level.Actors:GetDescendants()) do
         if v.Name == "Character" then
@@ -411,13 +439,15 @@ r:addButton("Remove Esp",function()
         end
     end
 end)
-r:addButton("Teleport The Npc|REQ!! The ESP",function()
+r:addButton("Bring The Npc|REQ!! The ESP",function()
     for _,v in pairs(game:GetService("Workspace").Level.Actors) do
         if v.Name == "Character" then
             if v.Head.Investigate.Radio.Visible == true then
                 venyx:Notify("Warning!!","The Npcs Is Currently On Radio")
             else
                 if v.HumanoidRootPart.ESPP then
+                    v.HumanoidRootPart.RootRigAttachment.OriginalPosition.Value = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+                    wait(0.15)
                     v.HumanoidRootPart.CFrame = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
                 end
             end
