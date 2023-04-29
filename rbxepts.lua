@@ -387,7 +387,7 @@ dd:addButton("Clear Highlight",function()
     end
 end)
 dd:addButton("Bring A Selected Npc",function()
-    local ncc = game:GetService("Workspace").Level.Actors.NP0
+    local ncc = game:GetService("Workspace").Level.Actors.NPC0
     if ncc:FindFirstChild("Character") then
         if getgenv().thnp == nil then
             wait()
@@ -407,7 +407,7 @@ r:addButton("Radio For Keycard",function()
             if v.Interact.ObjectName.Value == "Falcon" then
                 wait()
             else
-                if v.Head.Investigate.Radio.Visible == true then
+                if v.Inventory:FindFirstChild("KeycardHS") then
                     if v.HumanoidRootPart:FindFirstChild("ESPP") then
                         wait()
                     else
@@ -444,15 +444,19 @@ r:addButton("Remove Esp",function()
     end
 end)
 r:addButton("Bring The Npc|REQ!! The ESP",function()
-    for _,v in pairs(game:GetService("Workspace").Level.Actors) do
+    for _,v in pairs(game:GetService("Workspace").Level.Actors:GetDescendants()) do
         if v.Name == "Character" then
-            if v.Head.Investigate.Radio.Visible == true then
-                venyx:Notify("Warning!!","The Npcs Is Currently On Radio")
+            if v.Interact.ObjectName.Value == "Falcon" then
+                wait()
             else
-                if v.HumanoidRootPart.ESPP then
-                    v.HumanoidRootPart.RootRigAttachment.OriginalPosition.Value = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
-                    wait(0.15)
-                    v.HumanoidRootPart.CFrame = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+                if v.Head.Investigate.Radio.Visible == true then
+                    venyx:Notify("Warning!!","The Npcs Is Currently On Radio")
+                else
+                    if v.Inventory:FindFirstChild("KeycardHS") then
+                        v.HumanoidRootPart.RootRigAttachment.OriginalPosition.Value = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+                        wait(0.15)
+                        v.HumanoidRootPart.CFrame = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+                    end
                 end
             end
         end
