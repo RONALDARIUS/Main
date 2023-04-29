@@ -22,9 +22,9 @@ n:addToggle("Esp All Npc", nil, function(value)
                 if v.Interact.ObjectName.Value == "Civilian" or v.Interact.ObjectName.Value == "Civilians" then
                     wait()
                 else
-                    if v.HumanoidRootPart:FindFirstChild("ESP") then
-                        wait()
-                    else
+                        if v.HumanoidRootPart:IsA("BillboardGui") then
+                            wait()
+                        else
                         local b = Instance.new("BillboardGui")
                         local t = Instance.new("TextLabel")
                         b.Parent = v.HumanoidRootPart
@@ -59,7 +59,7 @@ ot:addToggle("HighLight Npc", nil, function(value)
                 if v.Interact.ObjectName.Value == "Civilian" or v.Interact.ObjectName.Value == "Civilians" then
                     wait()
                 else
-                    if v:FindFirstChild("HL") then
+                    if v:IsA("Highlight") then
                         wait()
                     else
                         local hg = Instance.new("Highlight")
@@ -331,8 +331,8 @@ dd:addToggle("Esp Npc", nil, function(value)
                     wait()
                 else
                     if v.Interact.ObjectName.Value == getgenv().thnp then
-                        if v.HumanoidRootPart:FindFirstChild("ESPD") then
-                            wait()
+                        if v.HumanoidRootPart:IsA("BillboardGui") then
+                            venyx:Notify("Error","There A Esp")
                         else
                             local b = Instance.new("BillboardGui")
                             local t = Instance.new("TextLabel")
@@ -385,8 +385,8 @@ dd:addToggle("Highlight Npc", nil, function(value)
                     wait()
                 else
                     if v.Interact.ObjectName.Value == getgenv().thnp then
-                        if v:FindFirstChild("HLD") then
-                            wait()
+                        if v:IsA("Highlight") then
+                            venyx:Notify("Error","There Are A Highlight")
                         else
                             local hg = Instance.new("Highlight")
                             hg.Parent = v
