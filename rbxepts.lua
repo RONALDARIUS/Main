@@ -387,12 +387,16 @@ dd:addButton("Clear Highlight",function()
     end
 end)
 dd:addButton("Bring A Selected Npc",function()
-    local ncc = game:GetService("Workspace").Level.Actors
+    local ncc = game:GetService("Workspace").Level.Actors.NP0
     if ncc:FindFirstChild("Character") then
-        if ncc.Character.Interact.ObjectName.Value == getgenv().thnp then
-            ncc.Character.HumanoidRootPart.Investigate.Radio.Value = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
-            wait(0.15)
-            ncc.Character.HumanoidRootPart.CFrame = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+        if getgenv().thnp == nil then
+            wait()
+        else
+            if ncc.Character.Interact.ObjectName.Value == getgenv().thnp then
+                ncc.Character.HumanoidRootPart.Investigate.Radio.Value = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+                wait(0.15)
+                ncc.Character.HumanoidRootPart.CFrame = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
+            end
         end
     end
 end)
