@@ -367,7 +367,7 @@ dd:addToggle("Highlight Npc", nil, function(value)
     end
 end)
 --Misc
-mi:addButton("Infinity Yield", function()
+mi:addButton("Infinite Yield", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
 s:addKeybind("Toggle Keybind", Enum.KeyCode.RightAlt, function()
