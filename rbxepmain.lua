@@ -301,6 +301,7 @@ dd:addToggle("Highlight Npc", nil, function(value)
         end
     end
 end)
+--test
 --Misc
 mi:addButton("Infinite Yield", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
