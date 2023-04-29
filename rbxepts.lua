@@ -9,6 +9,7 @@ local m = venyx:addPage("Misc", 5012544693)
 --section
 local n = es:addSection("Esp")
 local dd = es:addSection("DropDown")
+local r = es:addSection("Radio/KeyCard|WIP")
 local ot = es:addSection("Highlight")
 local mi = m:addSection("Misc")
 local s = m:addSection("Settings")
@@ -361,6 +362,63 @@ dd:addToggle("Highlight Npc", nil, function(value)
                             v.HL:Destroy()
                         end
                     end
+                end
+            end
+        end
+    end
+end)
+--radio
+local plr = game:GetService("Players").LocalPlayer.Character
+r:addButton("Radio For Keycard",function()
+    for _,v in pairs(game:GetService("Workspace").Level.Actors:GetDescendants()) do
+        if v.Name == "Character" then
+            if v.Interact.ObjectName.Value == "Falcon" then
+                wait()
+            else
+                if v.Head.Investigate.Radio.Visible == true then
+                    if v.HumanoidRootPart:FindFirstChild("ESPP") then
+                        wait()
+                    else
+                        local b = Instance.new("BillboardGui")
+                        local t = Instance.new("TextLabel")
+                        b.Parent = v.HumanoidRootPart
+                        b.Name = "ESPP"
+                        b.AlwaysOnTop = true
+                        b.Size = UDim2.new(0, 50, 0, 50)
+                        b.StudsOffset = Vector3.new(0, 2, 0)
+                        t.Parent = b
+                        t.Text = "Card"
+                        t.BackgroundTransparency = 1 
+                        t.TextScaled = true
+                        t.Size = UDim2.new(1, 0, 1, 0)
+                        t.TextColor3 = Color3.new(1, 0, 0)
+                    end
+                end
+            end
+        end
+    end
+end)
+r:addButton("Remove Esp",function()
+    for _,v in pairs(game:GetService("Workspace").Level.Actors:GetDescendants()) do
+        if v.Name == "Character" then
+            if v.Interact.ObjectName.Value == "Falcon" then
+                wait()
+            else
+                if v.HumanoidRootPart:FindFirstChild("ESPP") then
+                    v.HumanoidRootPart.ESPP:Destroy()
+                end
+            end
+        end
+    end
+end)
+r:addButton("Teleport The Npc|REQ!! The ESP",function()
+    for _,v in pairs(game:GetService("Workspace").Level.Actors) do
+        if v.Name == "Character" then
+            if v.Head.Investigate.Radio.Visible == true then
+                venyx:Notify("Warning!!","The Npcs Is Currently On Radio")
+            else
+                if v.HumanoidRootPart.ESPP then
+                    v.HumanoidRootPart.CFrame = plr.HumanoidRootPart.CFrame * CFrame.new(0,0,-4)
                 end
             end
         end
