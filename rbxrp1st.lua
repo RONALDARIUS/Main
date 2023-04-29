@@ -138,7 +138,8 @@ sett:addTextbox("FireServer", "Default", function(value, focusLost)
     end
 end)
 sett:addButton("Destroy Gui", function()
-    venyx:Destroy()
+    local c = game:GetService("CoreGui"):FindFirstChild("Leod|Rock Piece 1st Sea")
+    if c then
+        c:Destroy()
+    end
 end)
-
-venyx:Init()

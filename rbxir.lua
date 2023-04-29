@@ -2,7 +2,7 @@
 local plr = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
 --library
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
-local venyx = library.new("Leod|Infinite Rarities", 5013109572)
+local venyx = library.new("Leod|Infinite Rarities|WIP", 5013109572)
 
 --page
 local M = venyx:addPage("Main", 5012544693)
@@ -68,5 +68,8 @@ se:addKeybind("Toggle Keybind", Enum.KeyCode.RightAlt, function()
 	venyx:toggle()
 end)
 p:addButton("Destroy Gui", function()
-	venyx:Destroy()
+	local c = game:GetService("CoreGui"):FindFirstChild("Leod|Infinite Rarities|WIP")
+	if c then
+		c:Destroy()
+	end
 end)

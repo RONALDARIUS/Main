@@ -1,7 +1,10 @@
 --The Lakehouse 
+local MarketplaceService = game:GetService("MarketplaceService")
+local asset = MarketplaceService:GetProductInfo(game.PlaceId)
+local libname = "Leod|"..asset.Name
 --Library
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
-local venyx = library.new("Leod|Entry Point|The Lakehouse", 5013109572)
+local venyx = library.new(libname, 5013109572)
 
 --page
 local es = venyx:addPage("Esp", 5012544693)
@@ -382,8 +385,8 @@ end)
 dd:addButton("Clear Highlight",function()
     for _,v in pairs(game:GetService("Workspace").Level.Actors:GetDescendants()) do
         if v.Name == "Character" then
-            if v.HumanoidRootPart:FindFirstChild("HLD") then
-                v.HumanoidRootPart.HLD:Destroy()
+            if v:FindFirstChild("HLD") then
+                v.HLD:Destroy()
             end
         end
     end
@@ -396,5 +399,8 @@ s:addKeybind("Toggle Keybind", Enum.KeyCode.RightAlt, function()
     venyx:toggle()
 end)
 s:addButton("Destroy Gui", function()
-    venyx:Destroy()
+    local c = game:GetService("CoreGui"):FindFirstChild(libname)
+    if c then
+        c:Destroy()
+    end
 end)

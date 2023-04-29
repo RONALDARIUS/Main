@@ -1,6 +1,9 @@
+local MarketplaceService = game:GetService("MarketplaceService")
+local asset = MarketplaceService:GetProductInfo(game.PlaceId)
+local libname = "Leod|"..asset.Name
 --Library 
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
-local venyx = library.new("Venyx", 5013109572)
+local venyx = library.new(libname, 5013109572)
 
 --page
 local main = venyx:addPage("Leod|Main", 5012544693)
@@ -27,7 +30,10 @@ s:addKeybind("Toggle Keybind", Enum.KeyCode.RightAlt, function()
     venyx:toggle() --gui toggle
 end)
 s:addButton("Destroy Gui", function()
-    venyx:Destroy()
+    local c = game:GetService("CoreGui"):FindFirstChild(libname)
+    if c then
+        c:Destroy()
+    end
 end)
 
 --test

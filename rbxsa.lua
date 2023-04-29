@@ -1,6 +1,6 @@
 --library
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/GreenDeno/Venyx-UI-Library/main/source.lua"))()
-local venyx = library.new("Venyx", 5013109572)
+local venyx = library.new("Loed|Stand Awakening", 5013109572)
 
 --page
 local it = venyx:addPage("Items", 5012544693)
@@ -82,7 +82,10 @@ s:addKeybind("Toggle Keybind", Enum.KeyCode.RightAlt, function()
 	venyx:toggle()
 end)
 s:addButton("Destroy Gui", function()
-	venyx:Destroy()
+	local c = game:GetService("CoreGui"):FindFirstChild("Loed|Stand Awakening")
+    if c then
+        c:Destroy()
+    end
 end)
 
 
